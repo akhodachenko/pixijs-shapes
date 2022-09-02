@@ -12,6 +12,8 @@ body {
 }
 #stage {
 	background-color: rgb(101, 145, 211);
+	border-radius: 20px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 #wrapper {
@@ -20,38 +22,36 @@ body {
 }
 header {
 	display: flex;
+	justify-content: space-between;
+	border: 2px solid #6c6ab5;
+	border-radius: 20px;
+	margin-bottom: 10px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
 	#shapesNumber, #shapesArea {
 		width: 100%;
-		border: 1px solid black;
-		margin: 0;
+		border: 2px solid #6c6ab5;
+		border-radius: 6px;
 		padding: 5px;
+		margin: 15px;
+		text-align: center;
+		box-shadow: 0 14px 28px rgba(0,0,0,0.17), 0 1px 1px rgba(0,0,0,0.17);
 	}
-	#shapesArea {
-		border-left-width: 0;
-	}
-	font-family: 'Roboto Slab', serif;
 }
 
-footer{
-	span{
-		font-family: 'VT323', monospace;
-	}
+footer {
 	display: flex;
-	border-radius: 42px 42px;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-around;
+	border: 2px solid #6c6ab5;
+	border-radius: 20px;
+	margin-top: 10px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	.controls {
 		display: flex;
 		align-items: center;
 		margin: 5px;
-		button {
-			&:hover {
-					background-color: darken(blue, 10%);
-			}
-			&:active {
-					background-color: darken(blue, 20%);
-			}
 		}
+
 		.increase, .decrease {
 			display: flex;
 			align-items: center;
@@ -59,35 +59,17 @@ footer{
 			width: 70px;
 			height: 35px;
 			font-size: 32px;
-			margin: 0;
-			border: 2px solid #000;
+			margin: 10px;
+			border: 2px solid #6c6ab5;
+			border-radius: 6px;
 			background: transparent;
-
+			box-shadow: 0 14px 28px rgba(0,0,0,0.17), 0 1px 1px rgba(0,0,0,0.17);
 		}
-		.increase {
-			transform-origin: right center;
-			border-right-width: 0;
-			border-left-width: 1px;
-			border-bottom: 0;
-			border-top: 0;
-			border-color: #6c6ab5;
-			background-color: #ed413d;
 
-
-
-		}
-		.decrease {
-
-			border-left-width: 0;
-			border-right-width: 1px;
-			border-bottom: 0;
-			border-top: 0;
-			border-color: #6c6ab5;
-			background-color: #ed413d;
-		}
 		.title {
 			display: flex;
-			border: 1px solid #000;
+			border: 2px solid #6c6ab5;
+			border-radius: 6px;
 			width: 160px;
 			height: 30px;
 			align-items: center;
@@ -95,7 +77,7 @@ footer{
 			margin: 5px;
 		}
 	}
-}
+
 
 
 

@@ -1,10 +1,7 @@
 import * as PIXI from 'pixi.js';
-
 const Graphics = PIXI.Graphics;
-
 export default class Shape {
 	constructor(params) {
-
 		this.width = 50;
 		this.height = 50;
 		this.graphics = null;

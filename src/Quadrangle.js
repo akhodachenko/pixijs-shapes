@@ -1,5 +1,4 @@
 import MainFigure from "./MainFigure";
-
 export default class Quadrangle extends MainFigure {
 
 	drawShape() {

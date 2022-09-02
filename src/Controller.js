@@ -14,9 +14,6 @@ export default class Controller {
 		this.onUpdate = new EventEmitter();
 	};
 
-	/**
-	 * initialize our app
-	 */
 	init() {
 		this.View.initPIXIApp(this.Model.getProperties());
 		this.Model.initDOM();
@@ -24,23 +21,15 @@ export default class Controller {
 		this.onUpdate.subscribe(this.View.updateNumberOfShapes.bind(this));
 	}
 
-
-	/**
-	 * @param data - coordinates of mouse arrow
-	 */
 	createShapeOnClick(data) {
 		const properties = this.Model.getProperties();
-		const { x, y } = data.global; // get click coordinates
+		const { x, y } = data.global;
 		const shape = this.initShape(properties);
 
 		shape.graphics.position.set(x, y);
 		this.shapesFalls(shape, properties, x, y);
 	}
 
-	/**
-	 * @param figure - pixijs object
-	 * @param makeShapeFalls - function to remove in ticker
-	 */
 	makeShapeDisappear(figure, makeShapeFalls) {
 		const shape = figure.graphics;
 		let { shapeColors } = this.Model.getProperties();
@@ -83,7 +72,6 @@ export default class Controller {
 				shape = new Triangle({ color });
 		}
 
-
 		shape.drawShape();
 		parentContainer.addChild(shape.graphics);
 
@@ -94,7 +82,6 @@ export default class Controller {
 
 	generateShapes() {
 		const defaultNumberOfShapes = 1;
-
 		if (this.View.pixiApp) {
 			const ticker = this.View.pixiApp.ticker;
 			let startTime = Date.now(); // save time for calc diff

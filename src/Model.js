@@ -1,6 +1,5 @@
 import App from './index'
 import text from './text.json'
-
 export default class Model {
 	constructor() {
 		this.width = 800;
