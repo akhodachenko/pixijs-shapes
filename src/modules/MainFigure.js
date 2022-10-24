@@ -1,5 +1,5 @@
-import * as PIXI from 'pixi.js';
-const Graphics = PIXI.Graphics;
+import { Graphics } from 'pixi.js';
+
 export default class Shape {
 	constructor(params) {
 		this.width = 50;

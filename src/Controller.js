@@ -1,10 +1,10 @@
 import App from "./index";
-import Triangle from "./triangle";
-import Quadrangle from "./Quadrangle";
-import Pentagon from "./Pentagon";
-import Hexagon from "./Hexagon";
-import Circle from "./Circle";
-import Ellipse from "./Ellipse";
+import Triangle from "./modules/triangle";
+import Quadrangle from "./modules/Quadrangle";
+import Pentagon from "./modules/Pentagon";
+import Hexagon from "./modules/Hexagon";
+import Circle from "./modules/Circle";
+import Ellipse from "./modules/Ellipse";
 import EventEmitter from "./EventEmitter";
 
 export default class Controller {

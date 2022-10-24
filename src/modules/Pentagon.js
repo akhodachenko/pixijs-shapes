@@ -1,3 +1,4 @@
+import { Point } from 'pixi.js'
 import MainFigure from "./MainFigure";
 let area = require('area-polygon')
 export default class Pentagon extends MainFigure {
@@ -5,12 +6,12 @@ export default class Pentagon extends MainFigure {
 	drawShape() {
 		super.drawShape();
 		this.graphics.drawPolygon([
-			new PIXI.Point(30, this.height),
-			new PIXI.Point(80, this.height),
-			new PIXI.Point(this.width, this.height / 2),
-			new PIXI.Point(this.width / 2, 0),
-			new PIXI.Point(0, this.height / 2),
-			new PIXI.Point(20, this.height)
+			new Point(30, this.height),
+			new Point(80, this.height),
+			new Point(this.width, this.height / 2),
+			new Point(this.width / 2, 0),
+			new Point(0, this.height / 2),
+			new Point(20, this.height)
 		]);
 		this.setArea();
 

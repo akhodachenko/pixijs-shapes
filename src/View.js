@@ -1,6 +1,5 @@
-import * as PIXI from 'pixi.js';
+import { Application, Container, Graphics } from 'pixi.js';
 import App from './index'
-const Application = PIXI.Application;
 
 export default class View {
 
@@ -21,7 +20,7 @@ export default class View {
 	}
 
 	createStage() {
-		const container = new PIXI.Container();
+		const container = new Container();
 		container.name = 'stage';
 
 		this.pixiApp.stage.addChild(container);
@@ -30,8 +29,8 @@ export default class View {
 
 	createRectangle(parentContainer, properties) {
 		const { width, height } = properties;
-		App.generateShapes();
-		const graphics = new PIXI.Graphics();
+		// App.generateShapes();
+		const graphics = new Graphics();
 		graphics.name = 'rectangle';
 		graphics.beginFill(0x000000);
 		graphics.drawRect(0, 0, width, height);
