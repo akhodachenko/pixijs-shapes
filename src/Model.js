@@ -1,5 +1,4 @@
-import App from './index'
-import text from './text.json'
+import App from './index';
 export default class Model {
 	constructor() {
 		this.width = 800;
@@ -25,26 +24,6 @@ export default class Model {
 			shapeColors: this.shapeColors,
 			shapeTypes: this.shapeTypes
 		}
-	}
-
-	initDOM() {
-		const gravityElem = document.getElementsByClassName('gravity-value');
-		const gravityDecrease = gravityElem[0].getElementsByClassName('decrease')[0];
-		const gravityIncrease = gravityElem[0].getElementsByClassName('increase')[0];
-		gravityIncrease.addEventListener('click', () => this.changeGravityValue('increase'));
-		gravityDecrease.addEventListener('click', () => this.changeGravityValue('decrease'));
-
-		const shapesElem = document.getElementsByClassName('number-of-shapes');
-		const shapesElemDecrease = shapesElem[0].getElementsByClassName('decrease')[0];
-		const shapesElemIncrease = shapesElem[0].getElementsByClassName('increase')[0];
-
-		shapesElemIncrease.addEventListener('click', () => this.changeShapesNumber('increase'));
-		shapesElemDecrease.addEventListener('click', () => this.changeShapesNumber('decrease'));
-
-		document.getElementById('shapes').innerinnerText = text['FOOTER-SHAPES'];
-		document.getElementById('gravity').innerinnerText = text['FOOTER_GRAVITY'];
-		document.getElementById('shapesNumber').innerinnerText = text['SHAPES_NUMBER'];
-		document.getElementById('shapesArea').innerinnerText = text['SHAPES_AREA'];
 	}
 
 	changeGravityValue(type) {

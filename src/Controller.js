@@ -1,4 +1,3 @@
-import App from "./index";
 import Triangle from "./modules/triangle";
 import Quadrangle from "./modules/Quadrangle";
 import Pentagon from "./modules/Pentagon";
@@ -6,17 +5,17 @@ import Hexagon from "./modules/Hexagon";
 import Circle from "./modules/Circle";
 import Ellipse from "./modules/Ellipse";
 import EventEmitter from "./EventEmitter";
+import View from './View';
 
 export default class Controller {
-	constructor(Model, View) {
+	constructor(Model) {
 		this.Model = Model;
-		this.View = View;
+		this.View = new View(this);
 		this.onUpdate = new EventEmitter();
 	};
 
 	init() {
 		this.View.initPIXIApp(this.Model.getProperties());
-		this.Model.initDOM();
 		this.onUpdate.subscribe(this.View.updateGravity.bind(this));
 		this.onUpdate.subscribe(this.View.updateNumberOfShapes.bind(this));
 	}
@@ -89,7 +88,7 @@ export default class Controller {
 			const func = () => {
 				if (Date.now() - startTime > 1000 / (this.Model.getData().numberOfShapes || defaultNumberOfShapes)) { // time spent
 					startTime = Date.now();
-					const shape = App.initShape();
+					const shape = this.initShape();
 					this.shapesFalls(shape, this.Model.getProperties());
 				}
 			};
@@ -127,7 +126,7 @@ export default class Controller {
 		shape.interactive = true;
 		shape.buttonMode = true;
 
-		shape.on('pointerdown', () => App.makeShapeDisappear(figure, makeShapeFalls));
+		shape.on('pointerdown', () => this.makeShapeDisappear(figure, makeShapeFalls));
 
 		ticker.add(makeShapeFalls);
 	}

@@ -1,9 +1,8 @@
 import './styles/main.scss'
 import Model from './Model';
-import View from './View';
 import Controller from './Controller';
 
-const App = new Controller(new Model(), new View());
+const App = new Controller(new Model());
 App.init();
 
 export default App;
