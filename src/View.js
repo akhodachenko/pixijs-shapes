@@ -1,5 +1,4 @@
 import { Application, Container, Graphics } from 'pixi.js';
-import App from './index';
 import text from './text.json';
 
 export default class View {

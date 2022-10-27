@@ -12,7 +12,7 @@ module.exports = {
 	mode,
 	target,
 	devtool,
-	entry: path.resolve(__dirname, 'src', 'index.js'),
+	entry: path.resolve(__dirname, 'src', 'index.ts'),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		clean: true,
@@ -48,6 +48,11 @@ module.exports = {
 					'sass-loader'
 				],
 			},
+			{
+				test: /\.ts$/,
+				exclude: /node_module/,
+				use: 'ts-loader'
+			}
 		]
 	}
 }

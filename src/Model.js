@@ -1,4 +1,3 @@
-import App from './index';
 export default class Model {
 	constructor() {
 		this.width = 800;
@@ -40,7 +39,7 @@ export default class Model {
 
 		}
 		this.data.gravityValue = gravityValue;
-		App.onUpdate.emit(this.data);
+		// App.onUpdate.emit(this.data);
 	};
 
 	changeShapesNumber(type) {
@@ -57,7 +56,6 @@ export default class Model {
 				break;
 		}
 		this.data.numberOfShapes = numberOfShapes;
-
-		App.onUpdate.emit(this.data);
+		// App.onUpdate.emit(this.data);
 	};
 }
