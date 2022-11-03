@@ -7,6 +7,7 @@ import Ellipse from "./modules/Ellipse";
 import EventEmitter from "./EventEmitter";
 import View from "./View";
 import Model from "./Model";
+import { Graphics } from "pixi.js";
 
 export default class Controller {
 	Model: Model;
@@ -37,14 +38,13 @@ export default class Controller {
 	makeShapeDisappear(figure, makeShapeFalls) {
 		const shape = figure.graphics;
 		let { shapeColors } = this.Model.getProperties();
-		const stage = this.View.pixiApp.stage.getChildAt(0);
+		const stage = this.View.pixiApp.stage;
 		
 		const ticker = this.View.pixiApp.ticker;
 		this.Model.pixels -= figure.area;
 		shape.destroy();
-		// @ts-ignore
-		stage.children.forEach(graphic => {
-			if (graphic) {
+		stage.children.forEach((graphic: Graphics) => {
+			if (graphic && graphic.tint) {
 				graphic.tint = shapeColors[Math.floor(Math.random() * shapeColors.length)];
 			}
 		})
@@ -54,7 +54,7 @@ export default class Controller {
 
 	initShape() {
 		let { shapeTypes, shapeColors } = this.Model.getProperties();
-		const parentContainer = this.View.pixiApp.stage.getChildByName('stage');
+		const parentContainer = this.View.pixiApp.stage;
 		const shapeType = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
 		let shape;
 		const color = shapeColors[Math.floor(Math.random() * shapeColors.length)];
@@ -79,7 +79,6 @@ export default class Controller {
 		}
 
 		shape.drawShape();
-		// @ts-ignore
 		parentContainer.addChild(shape.graphics);
 
 		this.Model.pixels += shape.area;
@@ -110,13 +109,12 @@ export default class Controller {
 		const pixiApp = this.View.pixiApp;
 		const defaultGravity = 5;
 		const ticker = pixiApp.ticker;
-		const parentContainer = pixiApp.stage.getChildByName('stage');
+		const parentContainer = pixiApp.stage;
 		const { height } = properties;
 		const pixelsElem = document.getElementById('surface-area');
 
 		pixelsElem.innerHTML = this.Model.pixels + '';
 		const shapeNumber = document.getElementById('number');
-		// @ts-ignore
 		shapeNumber.innerHTML = (parentContainer.children.length - 1) + '';
 		shape.position.set(x, y);
 
