@@ -13,6 +13,10 @@ module.exports = {
 	target,
 	devtool,
 	entry: path.resolve(__dirname, 'src', 'index.ts'),
+	resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.scss'],
+        modules: ['src', 'node_modules'] // Assuming that your files are inside the src dir
+    },
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		clean: true,
@@ -20,7 +24,8 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'src', 'index.html')
+			template: path.resolve(__dirname, 'src', 'index.html'),
+			inject: 'body'
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css'

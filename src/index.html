@@ -11,8 +11,14 @@
 <body>
 	<div id="wrapper">
 		<header>
-			<div id="shapesNumber">Shapes number: <span id="number">1</span></div>
-			<div id="shapesArea">Surface area occupied by shapes: <span id="surface-area"></span></div>
+			<div>
+				<span id="shapesNumber">Shapes number:</span> 
+				<span id="number"></span>
+			</div>
+			<div>
+				<span id="shapesNumber">Surface area occupied by shapes:</span> 
+				<span id="surface-area"></span>
+			</div>
 		</header>
 		<main>
 			<canvas id="stage"></canvas>
@@ -21,17 +27,17 @@
 			<div class="controls number-of-shapes">
 				<button class="decrease btn-waring">-</button>
 				<button class="increase">+</button>
-				<div class="title" id="shapes">
-					Number of shapes:
+				<div class="title">
+					<span id="shapes">Number of shapes:</span>
 					<span id="footer-number-of-shapes"> 1</span>
 				</div>
 			</div>
 			<div class="controls gravity-value">
 				<button class="decrease">-</button>
 				<button class="increase ">+</button>
-				<div class="title" id="gravity">
-					Gravity value:
-					<span id="footer-gravity"> 5</span>
+				<div class="title">
+					<span id="gravity">Gravity value:</span>
+					<span id="footer-gravity">5</span>
 				</div>
 			</div>
 		</footer>

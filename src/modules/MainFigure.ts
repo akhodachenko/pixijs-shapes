@@ -1,6 +1,13 @@
 import { Graphics } from 'pixi.js';
 
 export default class Shape {
+	width: number;
+	height: number;
+	graphics: Graphics | null;
+	type: string;
+	color: number;
+	area: number;
+
 	constructor(params) {
 		this.width = 50;
 		this.height = 50;

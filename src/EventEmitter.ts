@@ -1,6 +1,8 @@
 export default class EventEmitter {
+	subscribtions: Function[];
+
 	constructor() {
-		this.subscribtions = []
+		this.subscribtions = [];
 	}
 
 	emit(value) {

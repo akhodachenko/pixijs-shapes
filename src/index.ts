@@ -4,5 +4,3 @@ import Controller from './Controller';
 
 const App = new Controller(new Model());
 App.init();
-
-export default App;

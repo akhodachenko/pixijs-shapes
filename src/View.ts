@@ -1,22 +1,24 @@
 import { Application, Container, Graphics } from 'pixi.js';
-import text from './text.json';
+import Controller from './Controller';
+import { TextConstants } from './TextConstants';
 
 export default class View {
-	constructor(Controller) {
+	Controller: Controller;
+	pixiApp: Application;
+
+	constructor(Controller: Controller) {
 		this.Controller = Controller;
 	}
 
 	initPIXIApp(properties) {
 		const { width, height } = properties;
-		const canvas = document.getElementById('stage');
 
 		this.pixiApp = new Application({
 			width,
 			height,
-			view: canvas,
+			view: document.getElementById('stage') as HTMLCanvasElement,
 			backgroundAlpha: 0
 		});
-
 		this.pixiApp.stage.sortableChildren = true;
 
 		this.createRectangle(this.createStage(), properties);
@@ -28,20 +30,20 @@ export default class View {
 		const gravityElem = document.getElementsByClassName('gravity-value');
 		const gravityDecrease = gravityElem[0].getElementsByClassName('decrease')[0];
 		const gravityIncrease = gravityElem[0].getElementsByClassName('increase')[0];
-		gravityIncrease.addEventListener('click', () => this.changeGravityValue('increase'));
-		gravityDecrease.addEventListener('click', () => this.changeGravityValue('decrease'));
+		gravityIncrease.addEventListener('click', () => this.Controller.changeGravityValue('increase'));
+		gravityDecrease.addEventListener('click', () => this.Controller.changeGravityValue('decrease'));
 
 		const shapesElem = document.getElementsByClassName('number-of-shapes');
 		const shapesElemDecrease = shapesElem[0].getElementsByClassName('decrease')[0];
 		const shapesElemIncrease = shapesElem[0].getElementsByClassName('increase')[0];
 
-		shapesElemIncrease.addEventListener('click', () => this.changeShapesNumber('increase'));
-		shapesElemDecrease.addEventListener('click', () => this.changeShapesNumber('decrease'));
+		shapesElemIncrease.addEventListener('click', () => this.Controller.changeShapesNumber('increase'));
+		shapesElemDecrease.addEventListener('click', () => this.Controller.changeShapesNumber('decrease'));
 
-		document.getElementById('shapes').innerinnerText = text['FOOTER-SHAPES'];
-		document.getElementById('gravity').innerinnerText = text['FOOTER_GRAVITY'];
-		document.getElementById('shapesNumber').innerinnerText = text['SHAPES_NUMBER'];
-		document.getElementById('shapesArea').innerinnerText = text['SHAPES_AREA'];
+		document.getElementById('shapes').innerText = TextConstants.FOOTER_SHAPES;
+		document.getElementById('gravity').innerText = TextConstants.FOOTER_GRAVITY;
+		document.getElementById('shapesNumber').innerText = TextConstants.SHAPES_NUMBER;
+		document.getElementById('shapesArea').innerText = TextConstants.SHAPES_AREA;
 	}
 
 	createStage() {

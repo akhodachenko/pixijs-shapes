@@ -1,14 +1,19 @@
-import Triangle from "./modules/triangle";
+import Triangle from "./modules/Triangle";
 import Quadrangle from "./modules/Quadrangle";
 import Pentagon from "./modules/Pentagon";
 import Hexagon from "./modules/Hexagon";
 import Circle from "./modules/Circle";
 import Ellipse from "./modules/Ellipse";
 import EventEmitter from "./EventEmitter";
-import View from './View';
+import View from "./View";
+import Model from "./Model";
 
 export default class Controller {
-	constructor(Model) {
+	Model: Model;
+	View: View;
+	onUpdate: EventEmitter;
+
+	constructor(Model: Model) {
 		this.Model = Model;
 		this.View = new View(this);
 		this.onUpdate = new EventEmitter();
@@ -23,7 +28,7 @@ export default class Controller {
 	createShapeOnClick(data) {
 		const properties = this.Model.getProperties();
 		const { x, y } = data.global;
-		const shape = this.initShape(properties);
+		const shape = this.initShape();
 
 		shape.graphics.position.set(x, y);
 		this.shapesFalls(shape, properties, x, y);
@@ -33,9 +38,11 @@ export default class Controller {
 		const shape = figure.graphics;
 		let { shapeColors } = this.Model.getProperties();
 		const stage = this.View.pixiApp.stage.getChildAt(0);
+		
 		const ticker = this.View.pixiApp.ticker;
-		this.Model.pixels -= figure.area
+		this.Model.pixels -= figure.area;
 		shape.destroy();
+		// @ts-ignore
 		stage.children.forEach(graphic => {
 			if (graphic) {
 				graphic.tint = shapeColors[Math.floor(Math.random() * shapeColors.length)];
@@ -72,6 +79,7 @@ export default class Controller {
 		}
 
 		shape.drawShape();
+		// @ts-ignore
 		parentContainer.addChild(shape.graphics);
 
 		this.Model.pixels += shape.area;
@@ -106,16 +114,17 @@ export default class Controller {
 		const { height } = properties;
 		const pixelsElem = document.getElementById('surface-area');
 
-		pixelsElem.innerHTML = this.Model.pixels;
+		pixelsElem.innerHTML = this.Model.pixels + '';
 		const shapeNumber = document.getElementById('number');
-		shapeNumber.innerHTML = parentContainer.children.length - 1;
+		// @ts-ignore
+		shapeNumber.innerHTML = (parentContainer.children.length - 1) + '';
 		shape.position.set(x, y);
 
 		const makeShapeFalls = () => {
 			if (shape.y >= height + shape.height) {
 				this.Model.pixels -= figure.area;
 				ticker.remove(makeShapeFalls);
-				pixelsElem.innerHTML = this.Model.pixels;
+				pixelsElem.innerHTML = this.Model.pixels + '';
 
 				shape.destroy();
 			} else {
@@ -129,5 +138,15 @@ export default class Controller {
 		shape.on('pointerdown', () => this.makeShapeDisappear(figure, makeShapeFalls));
 
 		ticker.add(makeShapeFalls);
+	}
+
+	changeShapesNumber(type: 'increase' | 'decrease') {
+		this.Model.changeShapesNumber(type);
+		this.onUpdate.emit(this.Model.getData());
+	}
+
+	changeGravityValue(type: 'increase' | 'decrease') {
+		this.Model.changeGravityValue(type);
+		this.onUpdate.emit(this.Model.getData());
 	}
 }

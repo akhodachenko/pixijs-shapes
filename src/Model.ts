@@ -1,4 +1,15 @@
+interface Data {
+	gravityValue: number;
+	numberOfShapes: number;
+}
 export default class Model {
+	width: number;
+	height: number;
+	shapeColors: number[];
+	shapeTypes: string[];
+	pixels: number;
+	data: Data;
+
 	constructor() {
 		this.width = 800;
 		this.height = 600;
@@ -9,7 +20,7 @@ export default class Model {
 		this.data = {
 			gravityValue: 5,
 			numberOfShapes: 1
-		}
+		};
 	};
 
 	getData() {
@@ -25,7 +36,7 @@ export default class Model {
 		}
 	}
 
-	changeGravityValue(type) {
+	changeGravityValue(type: 'increase' | 'decrease') {
 		let { gravityValue } = this.data;
 		switch (type) {
 			case 'increase':
@@ -39,10 +50,9 @@ export default class Model {
 
 		}
 		this.data.gravityValue = gravityValue;
-		// App.onUpdate.emit(this.data);
 	};
 
-	changeShapesNumber(type) {
+	changeShapesNumber(type: 'increase' | 'decrease') {
 		let { numberOfShapes } = this.data;
 
 		switch (type) {
@@ -56,6 +66,5 @@ export default class Model {
 				break;
 		}
 		this.data.numberOfShapes = numberOfShapes;
-		// App.onUpdate.emit(this.data);
 	};
 }
